@@ -4,26 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: indigo;
+        }
+
+        button{
+            background-color: ghostwhite;
+            border: none; 
+            padding: 8px 16px; 
+            border-radius: 5px;
+            color: inherit;
+             transition: 0.5s; 
+        }
+
+        
+        
+
+        button:hover{
+           background: lavender; 
+           cursor: pointer;
+           padding: 8px 24px;
+           /* scale: 1.2; -- option to make size of button bigger when hovering*/
+        }
+        
+        button.clicked.correct{
+            background: turquoise;
+            color: indigo;
+        }
+
+        button.clicked{
+            background: deeppink;
+            color: white;
+        }
+
+
+    </style>
 </head>
 <body>
     <h1>Quiz</h1>
+    <div class="question">
     <h2> How should you NOT refer to Javascript?</h2>
     <button onclick="check(this)"> JS </button>
     <button onclick="check(this)"> VanillaJS </button>
     <button onclick="check(this)" class="correct"> Java</button>
+    </div>
 
+    <div class="question">
     <h2>What does the C in CSS Stand for?</h2>
     <button onclick="check(this)"> Cascading </button>
     <button onclick="check(this)"> Cat </button>
     <button onclick="check(this)" class="correct"> Compounding </button>
+    </div>
 
     <script>
         function check(button){
+
+            button.classList.add("clicked");
+
             if (button.classList.contains("correct")){
-                button.style.background= "green";
+               // button.style.background= "turquoise";
             } else {
-                button.style.background ="red";
+               // button.style.background ="deeppink";
+               // button.style.color="white";
             }
+
+
+            let question= button.closest('.question')
+            let buttons= question.querySelectorAll ('button');
+
+            //for each button on my list 
+            for(let button of buttons){
+                //disable them 
+                button.disabled=true; 
+            }
+
+            console.log(buttons);
         }
     </script>
 </body>
